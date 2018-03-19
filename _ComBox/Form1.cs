@@ -1,30 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.ComboBox;
 
 namespace _ComBox
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            comboBox2.Items.AddRange(comList);
-        }
-
-
-        private object[] comList = new object[]
+        private readonly object[] comList =
         {
             "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10",
             "A11", "A12", "A13", "A14", "A15", "A16", "A17", "A18", "A19", "A20", "A21", "A22", "A23", "A24", "A25",
@@ -44,6 +26,16 @@ namespace _ComBox
             "D41", "D42", "D43", "D44", "D45", "D46", "D47", "D48", "D49", "D50"
         };
 
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            comboBox2.Items.AddRange(comList);
+        }
+
         private void comboBox2_TextUpdate(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(comboBox2.Text))
@@ -52,8 +44,8 @@ namespace _ComBox
                 comboBox2.Items.AddRange(comList);
                 return;
             }
-            string txt = comboBox2.Text;
-            List<object> strList = new List<object>();
+            var txt = comboBox2.Text;
+            var strList = new List<object>();
             foreach (var item in comList)
             {
                 if (item.ToString().Contains(txt))
